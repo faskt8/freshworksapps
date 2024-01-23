@@ -1,0 +1,63 @@
+{
+  "platform-version": "2.3",
+  "product": {
+    "freshdesk": {
+      "location": {
+        "ticket_sidebar": {
+          "url": "HTML_Files/template.html",
+          "icon": "icon.svg"
+        },
+        "contact_sidebar": {
+          "url": "HTML_Files/template.html",
+          "icon": "icon.svg"
+        }
+      },
+      "functions": {
+        "updateDealAfterWon": {
+          "timeout": 10
+        },
+        "getAllProductsUsingfFilter": {
+          "timeout": 10
+        },
+        "productDetails": {
+          "timeout": 10
+        },
+        "getAllCurrencies": {
+          "timeout": 10
+        },
+        "checkOrganisation": {
+          "timeout": 10
+        },
+        "createPerson": {
+          "timeout": 10
+        },
+        "createDeal": {
+          "timeout": 10
+        },
+        "addProducts": {
+          "timeout": 10
+        },
+        "fetchPipeline": {
+          "timeout": 10
+        },
+        "fetchPipelineStage": {
+          "timeout": 10
+        },
+        "fetchOwner": {
+          "timeout": 10
+        },
+        "addNote": {
+          "timeout": 10
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "request": "2.72.0",
+    "base-64": "0.1.0"
+  },
+  "engines": {
+    "node": "18.16.1",
+    "fdk": "9.0.8"
+  }
+}
