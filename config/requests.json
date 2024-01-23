@@ -1,0 +1,36 @@
+{
+  "getPerson": {
+    "schema": {
+      "protocol": "https",
+      "method": "GET",
+      "host":
+        "<%= iparam.domain %>.freshdesk.com",
+      "path": "/api/v2/tickets",
+      "headers": {
+        "Authorization":
+          "Bearer <%= iparam.apikey %>",
+        "Content-Type": "application/json"
+      },
+      "query": {
+        "page": "<%= context.page %>",
+        "per_page": "20"
+      }
+    },
+    "options": {
+      "retryDelay": 1000
+    }
+  },
+  "sendToExternalAPI": {
+    "schema": {
+      "method": "POST",
+      "host":
+        "<%= iparam.ext_domain %>.example.com",
+      "path": "/api/",
+      "headers": {
+        "Authorization":
+          "Bearer <%= iparam.ext_apikey %>",
+        "Content-Type": "application/json"
+      }
+    }
+  }
+}

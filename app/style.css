@@ -1,0 +1,86 @@
+.contactLabel {
+  font-size: 15px;
+}
+
+.commonRequirementspan {
+  font-size: 14px !important;
+}
+
+.appRequirementlabel {
+  margin-top: -10px;
+  font-size: 14px;
+}
+
+.divRequirement {
+  padding-bottom: 6px
+}
+
+.differentiate {
+  border-top-style: groove;
+}
+
+.secondSapn {
+  margin-left: 20%
+}
+
+.tableCSS {
+  width: 80%
+}
+
+.tdpadding {
+  padding-left: 16px;
+}
+
+.createButton {
+  float: right;
+  background-color: #264966 !important;
+  border-color: #12344d !important;
+  color: white !important;
+}
+
+.redColor {
+  color: #ff5959;
+}
+
+.divWidth {
+  width: 96% !important
+}
+
+.fr100 {
+  float: right;
+  margin-top: -20px;
+}
+
+.padding100 {
+  padding-left: 15px;
+}
+
+.w10 {
+  width: 60%;
+}
+
+.yellowColor {
+  color: blue;
+}
+
+.closeBtnCreateDeal {
+  margin-right: 10px;
+}
+
+.addBtnCreateDeal {
+  margin-right: 20px;
+}
+
+.tinyLabel {
+  font-size: 15px !important;
+}
+
+.iconClass {
+  float: right;
+  margin-right: 30px;
+}
+
+.inputClass {
+  padding-right: 15px !important;
+  width: 94% !important;
+}

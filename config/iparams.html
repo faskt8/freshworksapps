@@ -1,0 +1,1042 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+		<script src="https://static.freshdev.io/fdk/2.0/assets/fresh_client.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script
+			type="module"
+			src="https://unpkg.com/@freshworks/crayons/dist/crayons/crayons.esm.js"
+		></script>
+		<script
+			nomodule
+			src="https://unpkg.com/@freshworks/crayons/dist/crayons/crayons.js"
+		></script>
+		<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css"
+		/>
+		<link
+			href="https://select2.github.io/select2/select2-3.5.3/select2.css?ts=2015-08-29T20%3A09%3A48%2B00%3A00"
+			rel="stylesheet"
+		/>
+		<script src="https://select2.github.io/select2/select2-3.5.3/select2.js?ts=2015-08-29T20%3A09%3A48%2B00%3A00"></script>
+
+		<style>
+			.secondChildDiv {
+				width: 32% !important;
+			}
+
+			.removeBtn {
+				margin-left: 10px !important;
+				margin-top: 5px !important;
+			}
+
+			.minusBtn {
+				height: 30px !important;
+				background-color: #12344d !important;
+				color: white !important;
+			}
+
+			.minusBtn1 {
+				height: 30px !important;
+				background-color: #12344d !important;
+				color: white !important;
+			}
+
+			.childDiv {
+				width: 34% !important;
+				padding-left: 33px !important;
+			}
+
+			.newFieldDiv {
+				margin-left: -30px !important;
+			}
+
+			.dummyHeight {
+				height: 55px;
+			}
+
+			.mapFieldsButtonDiv {
+				margin-top: 20px !important;
+			}
+
+			.mapFieldsDiv {
+				margin-left: -30px !important;
+				padding-bottom: 2% !important;
+			}
+
+			.labelClass {
+				font-size: 12px;
+				color: rgb(71, 88, 103);
+				font-weight: 500;
+				margin-bottom: 0px;
+				padding-bottom: 4px;
+				padding-left: 2px;
+				display: block;
+			}
+
+			.pipeurl,
+			.pipeapi {
+				width: 40%;
+			}
+
+			.page3 {
+				padding-left: 10px;
+			}
+
+			.star {
+				color: #ff5959;
+			}
+
+			.w50 {
+				width: 50% !important;
+				margin-left: 1% !important;
+			}
+
+			.marginLeft {
+				margin-left: 1% !important;
+			}
+
+			.btn-primary {
+				background-color: #264966 !important;
+				border-color: #12344d !important;
+			}
+
+			.w100 {
+				width: 80%;
+				margin-bottom: 5px;
+			}
+
+			.labels {
+				width: 100%;
+				font-weight: normal;
+				font-size: 16px;
+			}
+
+			.page2Padding {
+				padding-left: 10px;
+			}
+
+			.selectedDeals {
+				width: 80%;
+				height: 50px;
+			}
+
+			.linkClass {
+				margin-top: 25px;
+				margin-left: 15px;
+			}
+
+			.buttonWidth {
+				width: 10%;
+			}
+
+			.w80 {
+				width: 80%;
+			}
+
+			.mainDiv {
+				height: inherit;
+			}
+
+			.firstStaticBlock {
+				padding-top: 35px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="page1">
+			<div class="form-group w50">
+				<fw-input
+					label="Pipedrive URL"
+					placeholder="Enter Pipedrive URL"
+					id="pipeURL"
+					state-text="Please enter pipedrive URL. Ex. example.pipedrive.com"
+					state="normal"
+					required
+					clear-input
+				>
+				</fw-input>
+				<div id="pipeURLerror" class="star"></div>
+			</div>
+			<div class="form-group w50">
+				<fw-input
+					label="Pipedrive API Token"
+					placeholder="Enter Pipedrive API"
+					id="pipeAPI"
+					state-text="Please enter pipedrive API token."
+					state="normal"
+					required
+					clear-input
+				>
+				</fw-input>
+				<div id="pipeAPIerror" class="star"></div>
+			</div>
+			<div class="form-group w50">
+				<fw-input
+					label="Freshdesk URL"
+					placeholder="Enter Freshdesk URL"
+					id="freskdeskURL"
+					state-text="Please enter Freshdesk URL. Ex: example.freshdesk.com"
+					state="normal"
+					required
+					clear-input
+				>
+				</fw-input>
+				<div id="freskdeskURLError" class="star"></div>
+			</div>
+			<div class="form-group w50">
+				<fw-input
+					label="Freshdesk API Token"
+					placeholder="Enter Freshdesk API"
+					id="freshdeskAPI"
+					state-text="Please enter freshdesk API token."
+					state="normal"
+					required
+					clear-input
+				>
+				</fw-input>
+				<div id="freshdeskAPIError" class="star"></div>
+			</div>
+			<div class="w50">
+				<fw-label id="error" color="red"></fw-label>
+			</div>
+			<div class="form-group marginLeft">
+				<fw-button id="btnAuth">AUTHENTICATE</fw-button>
+			</div>
+		</div>
+		<div id="page2" class="page2Padding">
+			<div class="form-group">
+				<label class="labelClass"><b>Deals Fields</b></label>
+				<select class="w100" id="deals" multiple="multiple">
+					<option value="title" selected="selected">Title</option>
+					<option value="value" selected="selected">Value</option>
+				</select>
+				<div id="deal" class="star"></div>
+			</div>
+			<div class="form-group">
+				<label class="labelClass"><b>Contact Fields</b></label>
+				<select class="w100" id="contacts" multiple="multiple">
+					<option value="name" selected="selected">Name</option>
+					<option value="email" selected="selected">Email</option>
+					<option value="phone" selected="selected">Phone</option>
+				</select>
+				<div id="contact" class="star"></div>
+			</div>
+			<div class="form-group">
+				<label class="labelClass"><b>Organisation Fields</b></label>
+				<select class="w100" id="organisations" multiple="multiple">
+					<option value="name" selected="selected">Name</option>
+					<option value="owner_id" selected="selected">Owner</option>
+					<option value="people_count" selected="selected">People</option>
+				</select>
+				<div id="organisation" class="star"></div>
+			</div>
+			<div class="form-group">
+				<label class="labelClass"
+					><b
+						>Select Organisation Field to Save Protege ID<span class="star">
+							*</span
+						></b
+					></label
+				>
+				<select id="organisationsProtegeID" class="form-control w80"></select>
+				<div id="organisationsProtegeIDError" class="star"></div>
+			</div>
+			<div class="form-group">
+				<button type="button" id="nextButton" class="btn btn-primary">
+					NEXT
+				</button>
+				<div id="nextError" class="star"></div>
+			</div>
+		</div>
+		<div id="page3" class="page3"></div>
+		<div id="page4" class="page4"></div>
+		<script>
+			var updateconfigs,
+				count = 0,
+				mapCount = 0,
+				mapCount1 = 0,
+				productFields,
+				result = [],
+				result1 = [],
+				selectedFields = [],
+				selectedFields1 = [],
+				organisationsData,
+				contactsData;
+			$("#deals, #contacts, #organisations").select2({
+				closeOnSelect: false,
+				maximumSelectionSize: 20,
+			});
+			$("#page2, #page3, #addWebhookURLDiv, #error").hide();
+			app.initialized().then(
+				function (client) {
+					window.client = client;
+				},
+				function (error) {
+					handleError(error, "No Button");
+				}
+			);
+			// next button click function
+			$("#nextButton").click(function () {
+				$("#nextError").html("");
+				$("#nextButton").text("LOADING...");
+				$("#nextButton").prop("disabled", true);
+				let orgProtegeID = $("#organisationsProtegeID").val();
+				if (orgProtegeID === "Select") {
+					$("#organisationsProtegeIDError").html("This is a Mandatory Field.");
+					$("#nextButton").text("NEXT");
+					$("#nextButton").prop("disabled", false);
+				} else {
+					getFinalPage();
+				}
+			});
+			// focus function to add combos
+			$(document).on("fwFocus", "#addComboNames", function () {
+				$("#saveComboBtnError").html("");
+				$("#addComboNames").attr(
+					"state-text",
+					"Add Pipedrive Product Combo Names. Ex: combo1,combo2"
+				);
+				$("#addComboNames").attr("state", "normal");
+				$("#saveCombo").text("Save Combo").prop("disabled", false);
+			});
+			// click function to save the contact mapping
+			$(document).on("fwClick", "#saveMapping2", function () {
+				selectedFields1 = [];
+				$(".row1").each(function (k, v) {
+					let selectedObj = {};
+					let newid = v.id;
+					let id = newid.split("one")[1];
+					console.log("id ", id);
+					console.log($(`#FDCompanyField1${id}`).text().trim());
+					let pipeFieldVal = $(`#pipeField1${id}`).val();
+					let FDCompanyFieldVal = $(`#FDCompanyField1${id}`).val();
+					let pipeField = $(`#pipeField1${id}`).text().trim();
+					let FDCompanyField = $(`#FDCompanyField1${id}`).text().trim();
+					if (pipeField != null && pipeField != undefined && pipeField != "") {
+						selectedObj["pipeField"] = pipeField;
+						selectedObj["FDCompanyField"] = FDCompanyField;
+						selectedObj["pipeFieldVal"] = pipeFieldVal;
+						selectedObj["FDCompanyFieldVal"] = FDCompanyFieldVal;
+						selectedFields1.push(selectedObj);
+					}
+				});
+				$("#saveMapping2").text("Saved");
+				console.log("selectedFields1 ", selectedFields1);
+				var comboNames = $("#addComboNames").val();
+				if (comboNames !== "") {
+					$("#saveCombo").text("Saved Combo").prop("disabled", true);
+				} else {
+					$("#addComboNames").attr("state-text", "This Field is Mandatory.");
+					$("#addComboNames").attr("state", "error");
+				}
+			});
+			// click function to save the organization mapping
+			$(document).on("fwClick", "#saveMapping1", function () {
+				selectedFields = [];
+				$(".row").each(function (k, v) {
+					let selectedObj = {};
+					let id = v.id;
+					let pipeFieldVal = $(`#pipeField${id}`).val();
+					let FDCompanyFieldVal = $(`#FDCompanyField${id}`).val();
+					let pipeField = $(`#pipeField${id}`).text().trim();
+					let FDCompanyField = $(`#FDCompanyField${id}`).text().trim();
+					if (pipeField != null && pipeField != undefined && pipeField != "") {
+						selectedObj["pipeField"] = pipeField;
+						selectedObj["FDCompanyField"] = FDCompanyField;
+						selectedObj["pipeFieldVal"] = pipeFieldVal;
+						selectedObj["FDCompanyFieldVal"] = FDCompanyFieldVal;
+						selectedFields.push(selectedObj);
+					}
+				});
+				$("#saveMapping1").text("Saved");
+				var comboNames = $("#addComboNames").val();
+				if (comboNames !== "") {
+					$("#saveCombo").text("Saved Combo").prop("disabled", true);
+				} else {
+					$("#addComboNames").attr("state-text", "This Field is Mandatory.");
+					$("#addComboNames").attr("state", "error");
+				}
+			});
+			// to make the by default selection for deals
+			$("#deals").on("change", function (event) {
+				hideError();
+				if (event.removed) {
+					let id = event.removed.id;
+					event.val.push(id);
+					if (id === "value" || id === "title") {
+						setTimeout(function () {
+							$("#deals").val(event.val).trigger("change.select2");
+						}, 50);
+						$("#deal").html("You can not remove default fields.");
+					}
+				}
+			});
+			// to make the by default selection for contacts
+			$("#contacts").on("change", function (event) {
+				hideError();
+				if (event.removed) {
+					let id = event.removed.id;
+					event.val.push(id);
+					if (id === "name" || id === "email" || id === "phone") {
+						setTimeout(function () {
+							$("#contacts").val(event.val).trigger("change.select2");
+						}, 50);
+						$("#contact").html("You can not remove default fields.");
+					}
+				}
+			});
+			// to make the by default selection for organization
+			$("#organisations").on("change", function (event) {
+				hideError();
+				if (event.removed) {
+					let id = event.removed.id;
+					event.val.push(id);
+					if (id === "name" || id === "owner_id" || id === "people_count") {
+						setTimeout(function () {
+							$("#organisations").val(event.val).trigger("change.select2");
+						}, 50);
+						$("#organisation").html("You can not remove default fields.");
+					}
+				}
+			});
+			$("#organisationsProtegeID").on("change", function (event) {
+				hideError();
+			});
+			$("#page2").on("click", function () {
+				$("#organisation, #contact, #deal").html("");
+			});
+			// Authenticate Button Click
+			$("#btnAuth").click(function () {
+				$("#error").val("").hide();
+				$(this).prop("disabled", true);
+				$("#btnAuth").text("AUTHENTICATING...");
+				var pURL = $("#pipeURL").val();
+				var pAPI = $("#pipeAPI").val();
+				var fdUrl = $("#freskdeskURL").val();
+				var fdAPI = $("#freshdeskAPI").val();
+				if (
+					pURL.includes("https://") ||
+					pURL.includes("http://") ||
+					fdUrl.includes("https://") ||
+					fdUrl.includes("http://")
+				) {
+					$("#btnAuth").prop("disabled", false);
+					$("#btnAuth").text("AUTHENTICATE");
+					if (fdUrl.includes("https://") || fdUrl.includes("http://")) {
+						$("#freskdeskURLError").html(
+							'Please remove "http://" or "https://" from the Freshdesk URL.'
+						);
+					} else if (pURL.includes("https://") || pURL.includes("http://")) {
+						$("#pipeURLerror").html(
+							'Please remove "http://" or "https://" from the pipedrive URL.'
+						);
+					}
+				} else {
+					if (
+						pURL.length !== 0 &&
+						pAPI.length !== 0 &&
+						fdUrl.length !== 0 &&
+						fdAPI.length !== 0
+					) {
+						checkFreshdeskCredentials(pURL, pAPI, fdUrl, fdAPI);
+					} else {
+						checkError(pURL, pAPI, fdUrl, fdAPI);
+					}
+				}
+			});
+			// input blocks click function
+			$("#pipeURL, #pipeAPI, #freskdeskURL, #freshdeskAPI").click(function () {
+				// $("#pipeURLerror, #pipeAPIerror, #error, #freskdeskURLError, #freshdeskAPIError").html('');
+				$("#error").val("").hide();
+				$(`#pipeURL`).attr("state", "normal");
+				$(`#pipeAPI`).attr("state", "normal");
+				$(`#freskdeskURL`).attr("state", "normal");
+				$(`#freshdeskAPI`).attr("state", "normal");
+			});
+			// freshdesk contact fields and pipedrive people fields
+			$(document).on("fwClick", "#nextPage", function () {
+				$("#page1,#page2, #page3, #addWebhookURLDiv, #error").hide();
+				$("#page4").show();
+				getFinalPage1();
+			});
+			function getFinalPage1() {
+				let fdCompanyArr = [],
+					organisationsArrToMap = [],
+					page3Arr = [];
+				fdCompanyArr.push(`<option selected disabled>Select</option>`);
+				organisationsArrToMap.push(`<option disabled selected>Select</option>`);
+				for (let i = 0; i < result1.length; i++) {
+					fdCompanyArr.push(
+						`<option value='${result1[i].name}'>${result1[i].label}</option>`
+					);
+				}
+				for (let i = 0; i < contactsData.length; i++) {
+					organisationsArrToMap.push(
+						`<option value="${contactsData[i].key}">${contactsData[i].name}</option>`
+					);
+				}
+				page3Arr.push(`
+                    <div>
+                        <fw-input label="Pipedrive Product Combo Names" state-text="Enter Product Combo Names" state="warning"
+                            placeholder="Enter all Product Combo Names" class="w50" required id="addComboNames">
+                        </fw-input>
+                    </div>
+                    <div class="mapFieldsDiv col-sm-12">
+                        <div class="col-sm-4">
+                            <label class="labelClass"><b>Pipedrive Person Fields</b></label>
+                            <select id="pipeOrgFields1"  class="form-control"></select>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="labelClass"><b>Freshdesk Contact Fields</b></label>
+                            <select id="freshdeskCompanyFields1" class="form-control"></select>
+                        </div>
+                        <div class="col-sm-4 mapFieldsButtonDiv">
+                            <fw-button color="primary" id="mapFields1">Map Fields</fw-button>
+                        </div>
+                    </div>
+                    <div id="moreFields1" class="col-sm-12 newFieldDiv"></div>
+                    <div>
+                        <fw-button color="primary" id="saveCombo">Save Combo</fw-button>
+                        <fw-button color="primary" id="saveMapping2">Save Mapping</fw-button>
+                    </div>
+                    <div id="saveComboBtnError1" class="star"></div>
+                    `);
+				$("#page4").html(page3Arr.join(""));
+				$("#pipeOrgFields1").html(organisationsArrToMap.join(""));
+				$("#freshdeskCompanyFields1").html(fdCompanyArr.join(""));
+				if (updateconfigs !== undefined) {
+					$("#addComboNames").val(updateconfigs.comboNames);
+					let UICount = 0;
+					var fieldsSelected = updateconfigs.selectedFields1;
+					requiredUI1(UICount, fieldsSelected);
+				}
+			}
+			function requiredUI1(UICount, fieldsSelected) {
+				if (UICount < fieldsSelected.length) {
+					addMappedFields1(UICount, fieldsSelected);
+				}
+			}
+			function addMappedFields1(flag, fieldsSelected) {
+				let newFieldDiv = [];
+				if (flag !== "buttonClick") {
+					mapCount1 = flag;
+					var pipeFieldVal = fieldsSelected[flag].pipeFieldVal;
+					var fdFieldVal = fieldsSelected[flag].FDCompanyFieldVal;
+					var pipeField = fieldsSelected[flag].pipeField;
+					var fdField = fieldsSelected[flag].FDCompanyField;
+					$("#pipeOrgFields1").val(pipeFieldVal);
+					$("#freshdeskCompanyFields1").val(fdFieldVal);
+				} else {
+					var pipeFieldVal = $("#pipeOrgFields1 option:selected").val();
+					var fdFieldVal = $("#freshdeskCompanyFields1 option:selected").val();
+					var pipeField = $("#pipeOrgFields1 option:selected").text();
+					var fdField = $("#freshdeskCompanyFields1 option:selected").text();
+				}
+				newFieldDiv.push(`<div class="row1" id="one${mapCount1}">
+                                <div class="col-sm-4 childDiv">
+                                    <select id="pipeField1${mapCount1}" class="form-control">
+                                    <option value="${pipeFieldVal}">${pipeField}</option>    
+                                    </select>
+                                </div>
+                                <div class="col-sm-4 secondChildDiv">
+                                    <select id="FDCompanyField1${mapCount1}" class="form-control">
+                                        <option value="${fdFieldVal}">${fdField}</option>    
+                                    </select>
+                                </div>
+                                <div class="col-sm-1 removeBtn">
+                                    <button class="form-control minusBtn1" id="removeFields1${mapCount1}">-</button>
+                                </div>
+                                <div class="dummyHeight"></div>
+                            </div>
+                            `);
+				$("#pipeOrgFields1").val("Select");
+				$("#freshdeskCompanyFields1").val("Select");
+				$("#moreFields1").append(newFieldDiv.join(""));
+				$(`#pipeField1${mapCount1}`).prop("disabled", true);
+				$(`#FDCompanyField1${mapCount1}`).prop("disabled", true);
+				mapCount1++;
+				if (fieldsSelected !== "updateconfigs") {
+					requiredUI1(mapCount1, fieldsSelected);
+				}
+			}
+			$(document).on("fwClick", "#mapFields1", function () {
+				// $("#saveCombo1").text("Save Combo").prop("disabled", false);
+				$("#saveMapping2").text("Save Mapping");
+				let flag = "buttonClick";
+				addMappedFields1(flag, "updateconfigs");
+			});
+			$(document).on("click", ".minusBtn1", function (data) {
+				// $("#saveCombo").text("Save Combo").prop("disabled", false);
+				let minusBtnID = data.target.id;
+				console.log("minusBtnID ", minusBtnID);
+				let reqCount = minusBtnID.split("removeFields1")[1];
+				minusBtnClickFunction1(reqCount, minusBtnID);
+			});
+			function minusBtnClickFunction1(reqCount, minusBtnID) {
+				console.log("reqCount ", reqCount);
+				$(`#pipeField1${reqCount}`).prop("disabled", false);
+				$(`#FDCompanyField1${reqCount}`).prop("disabled", false);
+				let pipeFieldVal = $(`#pipeField1${reqCount}`).val();
+				let fdFieldVal = $(`#FDCompanyField1${reqCount}`).val();
+				$("#pipeOrgFields1").val(pipeFieldVal);
+				$("#freshdeskCompanyFields1").val(fdFieldVal);
+				$("#pipeOrgFields1 option:selected").prop("disabled", false);
+				$("#freshdeskCompanyFields1 option:selected").prop("disabled", false);
+				$("#pipeOrgFields1").val("Select");
+				$("#freshdeskCompanyFields1").val("Select");
+				console.log(`#one${reqCount}`);
+				$(`#one${reqCount}`).remove();
+				mapCount1--;
+			}
+			// MAP FIELDS button click button
+			$(document).on("fwClick", "#mapFields", function () {
+				$("#saveMapping1").text("Save Mapping");
+				let flag = "buttonClick";
+				addMappedFields(flag, "updateconfigs");
+			});
+			// click function to remove selected field
+			$(document).on("click", ".minusBtn", function (data) {
+				let minusBtnID = data.target.id;
+				let reqCount = minusBtnID.split("removeFields")[1];
+				minusBtnCLickFunction(reqCount, minusBtnID);
+			});
+			// function to click the minus or remove button
+			function minusBtnCLickFunction(reqCount, minusBtnID) {
+				$(`#pipeField${reqCount}`).prop("disabled", false);
+				$(`#FDCompanyField${reqCount}`).prop("disabled", false);
+				let pipeFieldVal = $(`#pipeField${reqCount}`).val();
+				let fdFieldVal = $(`#FDCompanyField${reqCount}`).val();
+				$("#pipeOrgFields").val(pipeFieldVal);
+				$("#freshdeskCompanyFields").val(fdFieldVal);
+				$("#pipeOrgFields option:selected").prop("disabled", false);
+				$("#freshdeskCompanyFields option:selected").prop("disabled", false);
+				$("#pipeOrgFields").val("Select");
+				$("#freshdeskCompanyFields").val("Select");
+				$(`#${minusBtnID}`).parent().parent().remove();
+				mapCount--;
+			}
+			// hide the error
+			function hideError() {
+				$(
+					"#deal, #organisationsProtegeIDError, #contact, #organisation, #nextError"
+				).html("");
+				$("#nextButton").text("NEXT");
+				$("#nextButton").prop("disabled", false);
+			}
+			// Error function if nothing is present in API and URL input block
+			function checkError(pURL, pAPI, fdUrl, fdAPI) {
+				$("#btnAuth").prop("disabled", false);
+				$("#btnAuth").text("AUTHENTICATE");
+				if (pURL.length === 0) {
+					$(`#pipeURL`).attr("state", "error");
+				}
+				if (pAPI.length === 0) {
+					$(`#pipeAPI`).attr("state", "error");
+				}
+				if (fdUrl.length === 0) {
+					$(`#freskdeskURL`).attr("state", "error");
+				}
+				if (fdAPI.length === 0) {
+					$(`#freshdeskAPI`).attr("state", "error");
+				}
+			}
+			// to check freshdesk API
+			function checkFreshdeskCredentials(pURL, pAPI, fdUrl, fdAPI) {
+				var url = `https://${fdUrl}/api/v2/company_fields`;
+				var headers = {
+					Authorization: "Basic " + btoa(fdAPI),
+					contentType: "application/json",
+				};
+				var options = {
+					headers: headers,
+				};
+				client.request.get(url, options).then(
+					function (data) {
+						result = JSON.parse(data.response);
+						getContactFields(pURL, pAPI, fdUrl, fdAPI);
+						// dealsFields(pAPI);
+					},
+					function (error) {
+						handleError(error, "#btnAuth");
+					}
+				);
+			}
+			function getContactFields(pURL, pAPI, fdUrl, fdAPI) {
+				var url = `https://${fdUrl}/api/v2/contact_fields`;
+				var headers = {
+					Authorization: "Basic " + btoa(fdAPI),
+					contentType: "application/json",
+				};
+				var options = {
+					headers: headers,
+				};
+				client.request.get(url, options).then(
+					function (data) {
+						result1 = JSON.parse(data.response);
+						dealsFields(pURL, pAPI);
+					},
+					function (error) {
+						handleError(error, "#btnAuth");
+					}
+				);
+			}
+			// to get all deals fields
+			function dealsFields(pURL, pAPI) {
+				var url = `https://${pURL}/v1/dealFields?api_token=${pAPI}`;
+				var headers = {
+					Accept: "application/json",
+				};
+				var options = {
+					headers: headers,
+				};
+				client.request.get(url, options).then(
+					function (data) {
+						var dealsData = JSON.parse(data.response).data;
+						var dealsArr = [];
+						for (let i = 0; i < dealsData.length; i++) {
+							if (
+								dealsData[i].name !== "Title" &&
+								dealsData[i].name !== "Value"
+							) {
+								dealsArr.push(
+									`<option value="${dealsData[i].key}">${dealsData[i].name}</option>`
+								);
+							}
+						}
+						$("#deals").append(dealsArr.join(""));
+						contactFields(pURL, pAPI);
+					},
+					function (error) {
+						handleError(error, "#btnAuth");
+					}
+				);
+			}
+			// to get all contact fields
+			function contactFields(pURL, pAPI) {
+				var url = `https://${pURL}/v1/personFields?api_token=${pAPI}&limit=300`;
+				var headers = {
+					Accept: "application/json",
+				};
+				var options = {
+					headers: headers,
+				};
+				client.request.get(url, options).then(
+					function (data) {
+						contactsData = JSON.parse(data.response).data;
+						console.log("contactsData == >> ", contactsData);
+						var contactsArr = [];
+						for (let j = 0; j < contactsData.length; j++) {
+							if (
+								contactsData[j].key !== "name" &&
+								contactsData[j].key !== "email" &&
+								contactsData[j].key !== "phone"
+							)
+								contactsArr.push(
+									`<option value="${contactsData[j].key}"> ${contactsData[j].name}</option>`
+								);
+						}
+						$("#contacts").append(contactsArr.join(""));
+						organisationFields(pURL, pAPI);
+					},
+					function (error) {
+						handleError(error, "#nextButton");
+					}
+				);
+			}
+			// to get all the fields of organisation
+			function organisationFields(pURL, pAPI) {
+				var url = `https://${pURL}/v1/organizationFields?api_token=${pAPI}&limit=300`;
+				var headers = {
+					Accept: "application/json",
+				};
+				var options = {
+					headers: headers,
+				};
+				client.request.get(url, options).then(
+					function (data) {
+						organisationsData = JSON.parse(data.response).data;
+						var organisationsArr = [],
+							orgProtegeID = [];
+						orgProtegeID.push(`<option selected>Select</option>`);
+						for (var j = 0; j < organisationsData.length; j++) {
+							orgProtegeID.push(
+								`<option value="${organisationsData[j].key}">${organisationsData[j].name}</option>`
+							);
+							if (
+								organisationsData[j].key !== "name" &&
+								organisationsData[j].key !== "owner_id" &&
+								organisationsData[j].key !== "people_count"
+							) {
+								organisationsArr.push(
+									`<option value="${organisationsData[j].key}">${organisationsData[j].name}</option>`
+								);
+							}
+						}
+						$("#organisations").append(organisationsArr.join(""));
+						$("#organisationsProtegeID").append(orgProtegeID.join(""));
+						$("#btnAuth").text("AUTHENTICATED");
+						$("#page1").hide();
+						$("#page2").show();
+						if (updateconfigs !== undefined) {
+							$("#deals").val(updateconfigs.dealArr).trigger("change");
+							$("#contacts").val(updateconfigs.contactArr).trigger("change");
+							$("#organisations")
+								.val(updateconfigs.organisationArr)
+								.trigger("change");
+							$("#organisationsProtegeID")
+								.val(updateconfigs.orgProtegeID)
+								.trigger("change");
+						}
+					},
+					function (error) {
+						handleError(error, "#nextButton");
+					}
+				);
+			}
+			// function to get final page
+			function getFinalPage() {
+				let fdCompanyArr = [],
+					organisationsArrToMap = [],
+					page3Arr = [];
+				fdCompanyArr.push(`<option selected disabled>Select</option>`);
+				organisationsArrToMap.push(`<option disabled selected>Select</option>`);
+				for (let i = 0; i < result.length; i++) {
+					fdCompanyArr.push(
+						`<option value='${result[i].name}'>${result[i].label}</option>`
+					);
+				}
+				for (let i = 0; i < organisationsData.length; i++) {
+					organisationsArrToMap.push(
+						`<option value="${organisationsData[i].key}">${organisationsData[i].name}</option>`
+					);
+				}
+				page3Arr.push(`
+                    <div class="mapFieldsDiv col-sm-12">
+                        <div class="col-sm-4">
+                            <label class="labelClass"><b>Pipedrive Organisation Fields</b></label>
+                            <select id="pipeOrgFields"  class="form-control"></select>
+                        </div>
+                        <div class="col-sm-4">
+                            <label class="labelClass"><b>Freshdesk Company Fields</b></label>
+                            <select id="freshdeskCompanyFields" class="form-control"></select>
+                        </div>
+                        <div class="col-sm-4 mapFieldsButtonDiv">
+                            <fw-button color="primary" id="mapFields">Map Fields</fw-button>
+                        </div>
+                    </div>
+                    <div id="moreFields" class="col-sm-12 newFieldDiv"></div>
+                    <div>
+                        <fw-button color="primary" id="saveMapping1">Save Mapping</fw-button>
+                        <fw-button color="primary" id="nextPage">Next Page</fw-button>
+                    </div>
+                    <div id="saveComboBtnError" class="star"></div>
+                    `);
+				$("#page3").html(page3Arr.join(""));
+				$("#nextButton").text("LOADED");
+				$("#nextButton").prop("disabled", true);
+				$("#pipeOrgFields").html(organisationsArrToMap.join(""));
+				$("#freshdeskCompanyFields").html(fdCompanyArr.join(""));
+				$("#page2").hide();
+				$("#page3").show();
+				if (updateconfigs !== undefined) {
+					// $("#addComboNames").val(updateconfigs.comboNames);
+					let UICount = 0;
+					var fieldsSelected = updateconfigs.selectedFields;
+					requiredUI(UICount, fieldsSelected);
+				}
+			}
+			// required UI needs to be created using this function
+			function requiredUI(UICount, fieldsSelected) {
+				if (UICount < fieldsSelected.length) {
+					addMappedFields(UICount, fieldsSelected);
+				}
+			}
+			// function to add mapped fields
+			function addMappedFields(flag, fieldsSelected) {
+				let newFieldDiv = [];
+				// var pipeField = "",
+				//   fdField;
+				if (flag !== "buttonClick") {
+					mapCount = flag;
+					var pipeFieldVal = fieldsSelected[flag].pipeFieldVal;
+					var fdFieldVal = fieldsSelected[flag].FDCompanyFieldVal;
+					var pipeField = fieldsSelected[flag].pipeField;
+					var fdField = fieldsSelected[flag].FDCompanyField;
+					$("#pipeOrgFields").val(pipeFieldVal);
+					$("#freshdeskCompanyFields").val(fdFieldVal);
+				} else {
+					var pipeFieldVal = $("#pipeOrgFields option:selected").val();
+					var fdFieldVal = $("#freshdeskCompanyFields option:selected").val();
+					var pipeField = $("#pipeOrgFields option:selected").text();
+					var fdField = $("#freshdeskCompanyFields option:selected").text();
+				}
+				newFieldDiv.push(`<div class="row" id="${mapCount}">
+                                <div class="col-sm-4 childDiv">
+                                    <select id="pipeField${mapCount}" class="form-control">
+                                    <option value="${pipeFieldVal}">${pipeField}</option>    
+                                    </select>
+                                </div>
+                                <div class="col-sm-4 secondChildDiv">
+                                    <select id="FDCompanyField${mapCount}" class="form-control">
+                                        <option value="${fdFieldVal}">${fdField}</option>    
+                                    </select>
+                                </div>
+                                <div class="col-sm-1 removeBtn">
+                                    <button class="form-control minusBtn" id="removeFields${mapCount}">-</button>
+                                </div>
+                                <div class="dummyHeight"></div>
+                            </div>
+                            `);
+				$("#pipeOrgFields").val("Select");
+				$("#freshdeskCompanyFields").val("Select");
+				$("#moreFields").append(newFieldDiv.join(""));
+				$(`#pipeField${mapCount}`).prop("disabled", true);
+				$(`#FDCompanyField${mapCount}`).prop("disabled", true);
+				mapCount++;
+				if (fieldsSelected !== "updateconfigs") {
+					requiredUI(mapCount, fieldsSelected);
+				}
+			}
+			// get configs function
+			function getConfigs(configs) {
+				updateconfigs = configs;
+				console.log("configs ", configs);
+				$("#pipeURL").val(configs.pURL);
+				$("#pipeAPI").val(configs.pAPI);
+				$("#freskdeskURL").val(configs.fdUrl);
+				$("#freshdeskAPI").val(configs.fdAPI);
+			}
+			// post configs function
+			function postConfigs(configs) {
+				var pURL = $("#pipeURL").val();
+				var pAPI = $("#pipeAPI").val();
+				var fdUrl = $("#freskdeskURL").val();
+				var fdAPI = $("#freshdeskAPI").val();
+				var comboNames = $("#addComboNames").val();
+				var orgProtegeID = $("#organisationsProtegeID").val();
+				var dealsArrayObj = [],
+					contactsArrayObj = [],
+					contactArr = [],
+					dealArr = [],
+					organisationsArrayObj = [],
+					organisationArr = [];
+				$("#deals > option:selected").each(function () {
+					var dealObj = {
+						key: $(this).val(),
+						value: $(this).text(),
+					};
+					dealArr.push($(this).val());
+					dealsArrayObj.push(dealObj);
+				});
+				$("#contacts > option:selected").each(function () {
+					var contactObj = {
+						key: $(this).val(),
+						value: $(this).text(),
+					};
+					contactArr.push($(this).val());
+					contactsArrayObj.push(contactObj);
+				});
+				$("#organisations > option:selected").each(function () {
+					var organisationObj = {
+						key: $(this).val(),
+						value: $(this).text(),
+					};
+					organisationArr.push($(this).val());
+					organisationsArrayObj.push(organisationObj);
+				});
+				return {
+					__meta: {
+						secure: ["pAPI, fdAPI"],
+					},
+					pURL,
+					pAPI,
+					fdUrl,
+					fdAPI,
+					dealsArrayObj: dealsArrayObj,
+					contactsArrayObj: contactsArrayObj,
+					organisationsArrayObj: organisationsArrayObj,
+					dealArr: dealArr,
+					contactArr: contactArr,
+					organisationArr: organisationArr,
+					comboNames: comboNames,
+					orgProtegeID: orgProtegeID,
+					selectedFields: selectedFields,
+					selectedFields1: selectedFields1,
+				};
+			}
+			// on install button function
+			// function validate() {
+			//   var isReturn = true;
+			//   if ($("#btnAuth").text() !== "AUTHENTICATED") {
+			//     $("#btnAuth").prop("disabled", false);
+			//     $("#error").html(
+			//       "Please click on Authentication button to proceed for installation/app updation."
+			//     );
+			//     isReturn = false;
+			//   }
+			//   if ($("#nextButton").text() !== "LOADED") {
+			//     $("#nextButton").prop("disabled", false);
+			//     $("#nextError")
+			//       .html(
+			//         "Please click on NEXT button to proceed for installation/app updation."
+			//       )
+			//       .show();
+			//     isReturn = false;
+			//   }
+			//   if ($("#saveCombo").text() !== "Saved Combo") {
+			//     $("#saveComboBtnError").html(
+			//       "Click on Save Combo Button to proceed further."
+			//     );
+			//     isReturn = false;
+			//   }
+			//   return isReturn;
+			// }
+			// error function to see the errors occured for API's
+			function handleError(error, btnID) {
+				if (btnID !== "No Button") {
+					$(`${btnID}`).prop("disabled", false);
+				}
+				if (btnID === "#nextButton") {
+					var errorDiv = "#nextError";
+					$(`${btnID}`).text("NEXT");
+				} else if (btnID === "#btnAuth") {
+					var errorDiv = "#error";
+					$(`${btnID}`).text("AUTHENTICATE");
+				}
+				if (error.status === 400 || error.status === 401) {
+					$(`${errorDiv}`)
+						.show()
+						.attr(
+							"value",
+							"Invalid input entered, please verify the fields and try again."
+						);
+				} else if (error.status === 500) {
+					$(`${errorDiv}`)
+						.show()
+						.attr(
+							"value",
+							"Unexpected error occurred, Please try after sometime."
+						);
+				} else if (error.status === 504) {
+					$(`${errorDiv}`)
+						.show()
+						.attr("value", "Timeout error while processing the request.");
+				} else if (error.status === 502) {
+					$(`${errorDiv}`)
+						.show()
+						.attr("value", "Error in establishing connection.");
+				} else {
+					$(`${errorDiv}`)
+						.show()
+						.attr(
+							"value",
+							"Unexpected error occurred, Please try after sometime."
+						);
+				}
+			}
+		</script>
+	</body>
+</html>

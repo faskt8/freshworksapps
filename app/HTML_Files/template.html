@@ -1,0 +1,53 @@
+<html>
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://static.freshdev.io/fdk/2.0/assets/fresh_client.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="../style.css">
+  <link rel="stylesheet" type="text/css" href="https://static.freshdev.io/fdk/2.0/assets/freshdesk.css">
+  <script src="../JS_Files/app.js"></script>
+  <script src="../JS_Files/handleError.js"></script>
+</head>
+
+<body>
+  <div class="fw-widget-wrapper mywidget">
+    <div id="loadingMSG"></div>
+    <div id="creatingContact">
+      <div id="contactError"></div>
+      <!-- <div id="createContact"><a href="#">Create Contact </a></div> -->
+      <div id="createContact"><a href="#">Criar contato</a></div>
+    </div>
+    <div id="conLabel"><label class="detailLabel">
+        <!-- <h4 style="font-size: 12px"><b>CONTACT DETAILS</b></h4> -->
+        <h4 style="font-size: 12px"><b>Detalhes do contato</b></h4>
+        <span id="redirectCust"></span>
+      </label>
+      <div class="form-group" id="contact_detail"></div>
+    </div>
+    <div id="orgDiv">
+      <label class="detailLabel">
+        <!-- <h4 style="font-size: 12px"><b>ORGANISATION</b></h4> -->
+        <h4 style="font-size: 12px"><b>Organização</b></h4>
+      </label>
+      <div class="form-group" id="org_detail"></div>
+    </div>
+    <div id="dealLabel"><label class="detailLabel">
+        <!-- <h4 style="font-size: 12px"><b>DEAL DETAILS</b></h4> -->
+        <h4 style="font-size: 12px"><b>Detalhes do Negócio</b></h4>
+      </label>
+      <div id="showDeals"></div>
+      <div id="addDeals"></div>
+    </div>
+    <div id="activityLabel"><label class="detailLabel">
+        <!-- <h4 style="font-size: 12px"><b>ACTIVITY</b></h4> -->
+        <h4 style="font-size: 12px"><b>Atividades</b></h4>
+      </label>
+      <div id="activity"></div><br>
+      <div id="next_activity"></div>
+    </div>
+  </div>
+</body>
+
+</html>

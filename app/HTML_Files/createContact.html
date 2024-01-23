@@ -1,0 +1,88 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://static.freshdev.io/fdk/2.0/assets/fresh_client.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../style.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://static.freshdev.io/fdk/2.0/assets/freshdesk.css"
+    />
+    <script src="../JS_Files/createContact.js"></script>
+    <script src="../JS_Files/handleError.js"></script>
+  </head>
+
+  <body>
+    <div class="fw-divider"></div>
+    <div id="loadingMSG"></div>
+    <div id="createContactNotify" class="redColor"></div>
+    <div id="createContactNotify1" style="color: blue"></div>
+    <div id="page1">
+      <div>
+        <!-- <b>Name</b><i class="redColor">*</i> -->
+        <b>Nome</b><i class="redColor">*</i>
+        <input
+          type=" text"
+          placeholder="Enter the Name"
+          class="form-control divWidth"
+          id="nameCreate"
+        />
+        <div id="nameError" class="redColor"></div>
+      </div>
+      <br />
+      <div>
+        <b>Email ID</b><i class="redColor">*</i>
+        <input
+          type="text"
+          placeholder="Enter the Email ID"
+          class="form-control divWidth"
+          id="emailCreate"
+        />
+        <div id="emailError" class="redColor"></div>
+      </div>
+      <br />
+      <div>
+        <!-- <b>Organisation Name</b> -->
+        <b>Organização Nome</b>
+        <input
+          type="text"
+          placeholder="Enter the Organisation Name"
+          class="form-control divWidth"
+          id="organisationCreate"
+        />
+        <div id="organisationError" class="yellowColor"></div>
+      </div>
+      <br />
+      <div>
+        <!-- <b>Phone Number</b> -->
+        <b>Número de Telefone</b>
+        <input
+          type="text"
+          placeholder="Enter the Phone Number"
+          class="form-control divWidth"
+          id="phoneCreate"
+        />
+        <div id="phoneError" class="yellowColor"></div>
+      </div>
+      <br />
+      <div>
+        <!-- <b>Phone Number</b> -->
+        <b>MDM ID</b>
+        <input
+          type="text"
+          placeholder="Enter the MDM ID"
+          class="form-control divWidth"
+          id="mdmCreate"
+        />
+        <div id="mdmError" class="yellowColor"></div>
+      </div>
+      <br />
+      <div class="modal-footer">
+        <button type="submit" id="createContactButton" class="btn createButton">
+          Create Contact
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
